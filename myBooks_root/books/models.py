@@ -4,3 +4,7 @@ from django.db import models
 
 class Author(models.Model):
     fullName = models.CharField(max_length=250)
+
+class Category(models.Model):
+    categoryName = models.CharField(max_length=250)
+
