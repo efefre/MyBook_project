@@ -68,7 +68,38 @@
         </tbody>
     </table>
     <button class="btn btn-success">Dodaj wszystkie</button>
+
+    <h2>Dodaj książkę przez formularz</h2>
+
+    <form>
+        <div class="form-group">
+          <label class="sr-only">Tytuł</label>
+          <input type="text" name="title" class="form-control" placeholder="Tytuł">
+        </div>
+
+        <div class="form-group">
+          <label class="sr-only">Autor</label>
+          <input type="text" name="author" class="form-control" placeholder="Autor">
+        </div>
+        <div class="form-group">
+          <label class="sr-only">Kategoria</label>
+          <input type="text" name="category" class="form-control" placeholder="Kategoria">
+        </div>
+        <div class="form-group">
+          <label class="sr-only">Opis</label>
+          <input type="text" name="description" class="form-control" placeholder="Opis">
+        </div>
+        <div class="form-group">
+          <label class="sr-only">Średnia ocena</label>
+          <input type="text" name="averageRaitnig" class="form-control" placeholder="Średnia ocena">
+        </div>
+        <div class="form-group">
+          <label class="sr-only">Link</label>
+          <input type="text" name="link" class="form-control" placeholder="Link">
+        </div>
+
+        <button class="btn btn-success" type="submit">Dodaj</button>
+        </form>
+
 </div>
-
-
 {% endblock %}
