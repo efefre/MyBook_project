@@ -6,4 +6,7 @@ function showImportFromGb() {
     document.getElementById("import_from_gb").style.display = "block";
 }
 
+function showAddBookForm() {
+    document.getElementById("import_from_gb").style.display = "none";
+    document.getElementById("add_book_form").style.display = "block";
 }
