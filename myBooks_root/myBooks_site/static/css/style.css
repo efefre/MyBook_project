@@ -1,1 +1,13 @@
 /* CUSTOM STYLES */
+.search {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+#import_from_gb {
+    display: none;
+}
+
+#add_book_form {
+    display: none;
+}
