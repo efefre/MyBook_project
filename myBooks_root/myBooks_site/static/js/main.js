@@ -12,4 +12,6 @@ function showImportFromGb() {
 function showAddBookForm() {
     document.getElementById("import_from_gb").style.display = "none";
     document.getElementById("add_book_form").style.display = "block";
+    document.getElementById("import_from_gb_button").disabled = false;
+    document.getElementById("add_book_form_button").disabled = true;
 }
