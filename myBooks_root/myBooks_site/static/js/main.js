@@ -4,7 +4,9 @@ document.getElementById("add_book_form_button").disabled = true;
 
 function showImportFromGb() {
     document.getElementById("add_book_form").style.display = "none";
+    document.getElementById("import_from_gb_button").disabled = true;
     document.getElementById("import_from_gb").style.display = "block";
+    document.getElementById("add_book_form_button").disabled = false;
 }
 
 function showAddBookForm() {
