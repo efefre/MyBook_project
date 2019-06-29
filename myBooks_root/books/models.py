@@ -9,7 +9,10 @@ class Author(models.Model):
         return self.fullName
 
 class Category(models.Model):
-    categoryName = models.CharField(max_length=250)
+    categoryName = models.CharField(max_length=250, unique=True)
+
+    def __str__(self):
+        return self.categoryName
 
 class Book(models.Model):
     title = models.CharField(max_length=500)
