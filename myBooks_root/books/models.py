@@ -1,4 +1,5 @@
 from django.db import models
+from decimal import Decimal
 
 # Create your models here.
 
@@ -19,7 +20,7 @@ class Book(models.Model):
     author = models.ManyToManyField(Author)
     category = models.ManyToManyField(Category, blank=True)
     description = models.TextField(blank=True)
-    averageRaiting = models.DecimalField(max_digits=3, decimal_places=1, blank=True)
+    averageRaiting = models.DecimalField(max_digits=3, decimal_places=1, blank=True, default=Decimal(0.00))
     canonicalVolumeLink = models.CharField(max_length=250, blank=True)
 
     def __str__(self):
