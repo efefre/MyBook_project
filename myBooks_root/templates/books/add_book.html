@@ -76,7 +76,8 @@
     <div id="add_book_form">
         <h2>Dodaj książkę przez formularz</h2>
 
-        <form>
+        <form action="{% url 'books:new_book' %}" method="POST">
+            {% csrf_token %}
             <div class="form-group">
               <label class="sr-only">Tytuł</label>
               <input type="text" name="title" class="form-control" placeholder="Tytuł">
