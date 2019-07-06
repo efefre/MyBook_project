@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Book, Author, Category
 
 # Create your views here.
@@ -37,7 +38,7 @@ def new_book(request):
 
             # Check if book exist in database
             if book_in_database:
-                print('Książka istnieje w bazie danych')
+                messages.error(request, 'Książka istnieje w bazie danych')
                 return redirect('/add')
             else:
                 book.save()
