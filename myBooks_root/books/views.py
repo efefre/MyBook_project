@@ -45,13 +45,13 @@ def new_book(request):
                 book.category.add(category)
                 book.author.add(author)
 
-                print('Dodano książkę do bazy danych')
-                return redirect('/')
+                messages.success(request, 'Książka została dodana do bazy danych. Możesz dodać kolejną książkę :)')
+                return redirect('/add')
         else:
             book.save()
             author = Author.objects.create(fullName=author)
             book.author.add(author)
             book.category.add(category)
 
-            print('Dodano książkę do bazy danych')
-            return redirect('/')
+            messages.success(request, 'Książka została dodana do bazy danych. Możesz dodać kolejną książkę :)')
+            return redirect('/add')
