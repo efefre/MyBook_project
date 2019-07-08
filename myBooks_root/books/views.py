@@ -26,7 +26,12 @@ def new_book(request):
                     averageRaiting=averageRaitnig,
                     canonicalVolumeLink=link)
 
-        category = Category.objects.create(categoryName=category)
+        category_in_database = Category.objects.all().filter(categoryName=category).values('id')
+
+        if category_in_database:
+            category = category_in_database[0]['id']
+        else:
+            category = Category.objects.create(categoryName=category)
 
 
         # Check if author exist in database
