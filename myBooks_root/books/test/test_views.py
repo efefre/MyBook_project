@@ -12,8 +12,11 @@ book_for_test = {'title':'Python',
 
 
 @pytest.mark.django_db
-def test_add_new_book_by_form(client):
-    response = client.post(reverse('books:new_book'),
-                           book_for_test)
-    messages = [m.tags for m in get_messages(response.wsgi_request)]
-    assert messages[0] == 'success'
+class TestAddingBookByForm:
+
+    def test_add_new_book_by_form(self,client):
+        response = client.post(reverse('books:new_book'),
+                            book_for_test)
+        messages = [m.tags for m in get_messages(response.wsgi_request)]
+        assert messages[0] == 'success'
+
