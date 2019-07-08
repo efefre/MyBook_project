@@ -15,3 +15,7 @@ function showAddBookForm() {
     document.getElementById("import_from_gb_button").disabled = false;
     document.getElementById("add_book_form_button").disabled = true;
 }
+
+setTimeout(function() {
+    $('#message').fadeOut('slow');
+}, 3000);
