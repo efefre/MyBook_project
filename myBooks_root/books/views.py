@@ -4,7 +4,12 @@ from .models import Book, Author, Category
 
 # Create your views here.
 def index(request):
-    return render(request, 'books/home.html')
+    books = Book.objects.all()
+
+    context = {
+        'books':books
+    }
+    return render(request, 'books/home.html', context)
 
 def add_book(request):
     return render(request, 'books/add_book.html')
