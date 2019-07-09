@@ -43,14 +43,10 @@
                 <td>{% for author in book.author.all %}
                     {{ author }}
                     {% endfor %}</td>
-                {% if book.category %}
-                    <td>{% for category in book.category.all %}
-                        {{ category }}
-                        {% endfor %}
-                    </td>
-                {% else %}
-                    <td><em>brak</em></td>
-                {% endif %}
+                <td>{% for category in book.category.all %}
+                    {{ category }}
+                    {% endfor %}
+                </td>
                 {% if book.description %}
                     <td>{{ book.description }}</td>
                 {% else %}
