@@ -6,7 +6,7 @@
 <div class="container">
     <h1>Lista książek</h1>
     <div class="search row">
-        <form>
+        <form action="{% url 'books:search' %}">
                 <div class="col-md-3">
                   <label class="sr-only">Tytuł</label>
                   <input type="text" name="title" class="form-control" placeholder="Tytuł">
