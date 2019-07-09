@@ -44,8 +44,11 @@
                 <td>{% for author in book.author.all %}
                     {{ author }}
                     {% endfor %}</td>
-                {% if book.cathegory %}
-                    <td>{{ book.cathegory }}</td>
+                {% if book.category %}
+                    <td>{% for category in book.category.all %}
+                        {{ category }}
+                        {% endfor %}
+                    </td>
                 {% else %}
                     <td><em>brak</em></td>
                 {% endif %}
