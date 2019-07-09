@@ -76,6 +76,13 @@ def search(request):
         if title:
             books = books.filter(title__icontains=title)
 
+    # Author
+    if 'author' in request.GET:
+        author = request.GET['author']
+
+        if author:
+            books = books.filter(author__fullName__icontains=author)
+
     context = {
         'books':books,
     }
