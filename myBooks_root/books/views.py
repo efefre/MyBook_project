@@ -65,3 +65,19 @@ def new_book(request):
 
             messages.success(request, 'Książka została dodana do bazy danych. Możesz dodać kolejną książkę :)')
             return redirect('/add')
+
+def search(request):
+    books = Book.objects.order_by('title')
+
+    # Title
+    if 'title' in request.GET:
+        title = request.GET['title']
+
+        if title:
+            books = books.filter(title__icontains=title)
+
+    context = {
+        'books':books,
+    }
+
+    return render(request, 'books/search.html', context)
