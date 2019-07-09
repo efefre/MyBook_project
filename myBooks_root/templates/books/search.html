@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Strona główna | {% endblock title %}
+{% block title %} Wyniki wyszukiwania | {% endblock title %}
 {% block content %}
 <div class="container">
-    <h1>Lista książek</h1>
+    <h1>Wyniki wyszukiwania</h1>
     <div class="search row">
         <form action="{% url 'books:search' %}">
                 <div class="col-md-3">
@@ -27,6 +27,7 @@
         </form>
     </div>
 
+    {% if books %}
     <table class="table table-striped">
         <thead>
             <th>Tytuł</th>
@@ -66,5 +67,8 @@
             {% endfor %}
         </tbody>
     </table>
+    {% else %}
+        <p>Brak wyników.</p>
+    {% endif %}
 </div>
 {% endblock %}

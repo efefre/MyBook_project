@@ -4,7 +4,12 @@ from .models import Book, Author, Category
 
 # Create your views here.
 def index(request):
-    return render(request, 'books/home.html')
+    books = Book.objects.order_by('title')
+
+    context = {
+        'books':books
+    }
+    return render(request, 'books/home.html', context)
 
 def add_book(request):
     return render(request, 'books/add_book.html')
@@ -60,3 +65,34 @@ def new_book(request):
 
             messages.success(request, 'Książka została dodana do bazy danych. Możesz dodać kolejną książkę :)')
             return redirect('/add')
+
+def search(request):
+    books = Book.objects.order_by('title')
+
+    # Title
+    if 'title' in request.GET:
+        title = request.GET['title']
+
+        if title:
+            books = books.filter(title__icontains=title)
+
+    # Author
+    if 'author' in request.GET:
+        author = request.GET['author']
+
+        if author:
+            books = books.filter(author__fullName__icontains=author)
+
+    #Category
+    if 'category' in request.GET:
+        category = request.GET['category']
+
+        if category:
+            books = books.filter(category__categoryName__icontains=category)
+
+
+    context = {
+        'books':books,
+    }
+
+    return render(request, 'books/search.html', context)
