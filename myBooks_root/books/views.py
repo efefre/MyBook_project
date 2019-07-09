@@ -4,7 +4,7 @@ from .models import Book, Author, Category
 
 # Create your views here.
 def index(request):
-    books = Book.objects.all()
+    books = Book.objects.order_by('title')
 
     context = {
         'books':books
