@@ -83,6 +83,14 @@ def search(request):
         if author:
             books = books.filter(author__fullName__icontains=author)
 
+    #Category
+    if 'category' in request.GET:
+        category = request.GET['category']
+
+        if category:
+            books = books.filter(category__categoryName__icontains=category)
+
+
     context = {
         'books':books,
     }
