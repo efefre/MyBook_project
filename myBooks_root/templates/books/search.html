@@ -27,6 +27,7 @@
         </form>
     </div>
 
+    {% if books %}
     <table class="table table-striped">
         <thead>
             <th>Tytuł</th>
@@ -67,5 +68,8 @@
             {% endfor %}
         </tbody>
     </table>
+    {% else %}
+        <p>Brak wyników.</p>
+    {% endif %}
 </div>
 {% endblock %}
