@@ -116,6 +116,10 @@ def add_book_from_google_books(request):
 
     response = requests.get(api_url)
     data_from_google_books = response.json()
+    books = data_from_google_books['items']
 
+    context = {
+        'books':books,
+    }
 
     return render(request, 'books/add_book_from_google_api.html', context)
