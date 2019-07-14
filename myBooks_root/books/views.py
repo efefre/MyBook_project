@@ -96,3 +96,17 @@ def search(request):
     }
 
     return render(request, 'books/search.html', context)
+
+def add_book_from_google_books(request):
+    if request.method == 'POST':
+        textstring = request.POST['textstring']
+        title = request.POST['title']
+        author = request.POST['author']
+
+    context = {
+        'textstring': textstring,
+        'title': title,
+        'author': author
+    }
+
+    return render(request, 'books/add_book_from_google_api.html', context)
