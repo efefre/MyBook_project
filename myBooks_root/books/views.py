@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Book, Author, Category
+import requests
 
 # Create your views here.
 def index(request):
@@ -99,14 +100,22 @@ def search(request):
 
 def add_book_from_google_books(request):
     if request.method == 'POST':
-        textstring = request.POST['textstring']
+        q = request.POST['textstring']
         title = request.POST['title']
         author = request.POST['author']
 
-    context = {
-        'textstring': textstring,
-        'title': title,
-        'author': author
-    }
+
+    if title:
+        api_url = 'https://www.googleapis.com/books/v1/volumes?q={}+intitle:{}'.format(q, title)
+        if author:
+            api_url = 'https://www.googleapis.com/books/v1/volumes?q={}+intitle:{}+inauthor:{}'.format(q, title, author)
+    elif author:
+        api_url = 'https://www.googleapis.com/books/v1/volumes?q={}+inauthor:{}'.format(q, author)
+    else:
+        api_url = 'https://www.googleapis.com/books/v1/volumes?q={}'.format(q)
+
+    response = requests.get(api_url)
+    data_from_google_books = response.json()
+
 
     return render(request, 'books/add_book_from_google_api.html', context)
