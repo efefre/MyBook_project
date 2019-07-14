@@ -7,38 +7,41 @@
 <!-- Messages (Alerts) -->
 {% include 'partials/_message.html' %}
 
-<div id="import_from_gb_result">
+<div class="container">
+    <div id="import_from_gb_result">
         <h2>Zaimportuj książkę z Google Books</h2>
+        <p>Znaleziono: {{ total_items }}</p>
         <table class="table table-striped">
-        <thead>
-            <th>Tytuł</th>
-            <th>Autor</th>
-            <th>Kategoria</th>
-            <th>Opis</th>
-            <th>Średnia ocena</th>
-            <th>Link</th>
-            <th></th>
-        </thead>
-        <tbody>
-            {% for book in books %}
-            <tr>
-                <td>{{ book.volumeInfo.title }}</td>
-                <td>{% for author in book.volumeInfo.authors %}
-                    {{ author }}
-                    {% endfor %}
-                </td>
-                <td>{% for category in book.volumeInfo.categories %}
-                    {{ category }}
-                    {% endfor %}
-                </td>
-                <td>{{ book.volumeInfo.description }}</td>
-                <td>{{ book.volumeInfo.averageRating }}</td>
-                <td>{{ book.volumeInfo.canonicalVolumeLink }}</td>
-                <td><button class="btn btn-xs btn-success">Dodaj</button></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <button class="btn btn-success">Dodaj wszystkie</button>
+            <thead>
+                <th>Tytuł</th>
+                <th>Autor</th>
+                <th>Kategoria</th>
+                <th>Opis</th>
+                <th>Średnia ocena</th>
+                <th>Link</th>
+                <th></th>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.volumeInfo.title }}</td>
+                    <td>{% for author in book.volumeInfo.authors %}
+                        {{ author }}
+                        {% endfor %}
+                    </td>
+                    <td>{% for category in book.volumeInfo.categories %}
+                        {{ category }}
+                        {% endfor %}
+                    </td>
+                    <td>{{ book.volumeInfo.description }}</td>
+                    <td>{{ book.volumeInfo.averageRating }}</td>
+                    <td>{{ book.volumeInfo.canonicalVolumeLink }}</td>
+                    <td><button class="btn btn-xs btn-success">Dodaj</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button class="btn btn-success">Dodaj wszystkie</button>
     </div>
+<div class="container">
 {% endblock %}
