@@ -105,23 +105,24 @@ def add_book_from_google_books(request):
         author = request.POST['author']
 
 
-    if title:
-        api_url = 'https://www.googleapis.com/books/v1/volumes?q={}+intitle:{}'.format(q, title)
-        if author:
-            api_url = 'https://www.googleapis.com/books/v1/volumes?q={}+intitle:{}+inauthor:{}'.format(q, title, author)
-    elif author:
-        api_url = 'https://www.googleapis.com/books/v1/volumes?q={}+inauthor:{}'.format(q, author)
-    else:
-        api_url = 'https://www.googleapis.com/books/v1/volumes?q={}'.format(q)
+        if title:
+            api_url = 'https://www.googleapis.com/books/v1/volumes?q={}+intitle:{}'.format(q, title)
+            if author:
+                api_url = 'https://www.googleapis.com/books/v1/volumes?q={}+intitle:{}+inauthor:{}'.format(q, title, author)
+        elif author:
+            api_url = 'https://www.googleapis.com/books/v1/volumes?q={}+inauthor:{}'.format(q, author)
+        else:
+            api_url = 'https://www.googleapis.com/books/v1/volumes?q={}'.format(q)
 
-    response = requests.get(api_url)
-    data_from_google_books = response.json()
-    books = data_from_google_books['items']
-    total_items = data_from_google_books['totalItems']
+        response = requests.get(api_url)
+        data_from_google_books = response.json()
+        books = data_from_google_books['items']
+        total_items = data_from_google_books['totalItems']
 
-    context = {
-        'books':books,
-        'total_items':total_items
-    }
+        context = {
+            'books':books,
+            'total_items':total_items
+        }
 
-    return render(request, 'books/add_book_from_google_api.html', context)
+        return render(request, 'books/add_book_from_google_api.html', context)
+    return redirect('/add')
