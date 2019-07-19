@@ -116,13 +116,15 @@ def find_book_in_google_books(request):
 
         response = requests.get(api_url)
         data_from_google_books = response.json()
-        books = data_from_google_books['items']
         total_items = data_from_google_books['totalItems']
+        if total_items > 0:
+            books = data_from_google_books['items']
 
-        context = {
-            'books':books,
-            'total_items':total_items
-        }
+            context = {
+                'books':books,
+                'total_items':total_items
+            }
 
-        return render(request, 'books/add_book_from_google_api.html', context)
+            return render(request, 'books/add_book_from_google_api.html', context)
+    messages.error(request, 'Nie udało się znaleźć książki w Google Books. Możesz ją dodać przez formularz')
     return redirect('/add')
