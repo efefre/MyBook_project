@@ -98,7 +98,7 @@ def search(request):
 
     return render(request, 'books/search.html', context)
 
-def add_book_from_google_books(request):
+def find_book_in_google_books(request):
     if request.method == 'POST':
         q = request.POST['textstring']
         title = request.POST['title']
