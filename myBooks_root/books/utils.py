@@ -35,17 +35,17 @@ def save_in_database(request, author, title, category, description, averageRaitn
 
         # Check if book exist in database
         if book_in_database:
-            messages.error(request, 'Książka istnieje w bazie danych')
+            messages.error(request, 'Książka {} istnieje w bazie danych'.format(title))
         else:
             book.save()
             book.category.add(category)
             book.author.add(author)
 
-            messages.success(request, 'Książka została dodana do bazy danych. Możesz dodać kolejną książkę :)')
+            messages.success(request, 'Książka {} została dodana do bazy danych.'.format(title))
     else:
         book.save()
         author = Author.objects.create(fullName=author)
         book.author.add(author)
         book.category.add(category)
 
-        messages.success(request, 'Książka została dodana do bazy danych. Możesz dodać kolejną książkę :)')
+        messages.success(request, 'Książka {} została dodana do bazy danych.'.format(title))
