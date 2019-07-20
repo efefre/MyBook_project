@@ -1,9 +1,18 @@
 from .models import Book, Author, Category
 from django.contrib import messages
 
-def save_in_database(request, author, title, category, description, averageRaitnig,link, ):
+def save_in_database(request, author, title, category, description, averageRaitnig,link):
     if not averageRaitnig:
         averageRaitnig = 0.0
+
+    if not category:
+        category = 'brak kategorii'
+
+    if not description:
+        description = 'brak opisu'
+
+    if not link:
+        link = 'brak linku'
 
     book = Book(title=title,
                 description=description,
