@@ -1,4 +1,8 @@
-def save_in_database(author, title, category, description, averageRaitnig,link, ):
+from .models import Book, Author, Category
+from django.contrib import messages
+from django.shortcuts import render, redirect
+
+def save_in_database(request, author, title, category, description, averageRaitnig,link, ):
     if not averageRaitnig:
         averageRaitnig = 0.0
 
