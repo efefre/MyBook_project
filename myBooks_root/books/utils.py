@@ -1,6 +1,5 @@
 from .models import Book, Author, Category
 from django.contrib import messages
-from django.shortcuts import render, redirect
 
 def save_in_database(request, author, title, category, description, averageRaitnig,link, ):
     if not averageRaitnig:
@@ -28,14 +27,12 @@ def save_in_database(request, author, title, category, description, averageRaitn
         # Check if book exist in database
         if book_in_database:
             messages.error(request, 'Książka istnieje w bazie danych')
-            return redirect('/add')
         else:
             book.save()
             book.category.add(category)
             book.author.add(author)
 
             messages.success(request, 'Książka została dodana do bazy danych. Możesz dodać kolejną książkę :)')
-            return redirect('/add')
     else:
         book.save()
         author = Author.objects.create(fullName=author)
@@ -43,4 +40,3 @@ def save_in_database(request, author, title, category, description, averageRaitn
         book.category.add(category)
 
         messages.success(request, 'Książka została dodana do bazy danych. Możesz dodać kolejną książkę :)')
-        return redirect('/add')
