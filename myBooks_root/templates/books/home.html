@@ -48,7 +48,7 @@
                     {% endfor %}
                 </td>
                 {% if book.description %}
-                    <td>{{ book.description | safe }}</td>
+                    <td>{{ book.description | safe | truncatechars:250 }}</td>
                 {% else %}
                     <td><em>brak</em></td>
                 {% endif %}
