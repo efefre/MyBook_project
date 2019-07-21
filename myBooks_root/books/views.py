@@ -90,3 +90,37 @@ def find_book_in_google_books(request):
             return render(request, 'books/add_book_from_google_api.html', context)
     messages.error(request, 'Nie udało się znaleźć książki w Google Books. Możesz ją dodać przez formularz')
     return redirect('/add')
+
+def save_book_from_google_in_db(request):
+    if request.method == 'POST':
+        checked_books_id = request.POST.getlist('checked-book-id')
+
+        for book_id in checked_books_id:
+            book_url = 'https://www.googleapis.com/books/v1/volumes/{}'.format(book_id)
+            response = requests.get(book_url)
+            book_detail = response.json().get('volumeInfo')
+            title = book_detail.get('title')
+            author = book_detail.get('authors')
+            if len(author) > 1:
+                authors = ''
+                for name in author:
+                    authors = authors +' ' + name
+                author = authors
+            else:
+                author = author[0]
+            category = book_detail.get('categories')
+            if category:
+                if len(category) > 1:
+                    categories = ''
+                    for name in category:
+                        categories = categories + name
+                    category = categories
+                else:
+                    category = category[0]
+            description = book_detail.get('description')
+            averageRaitnig = book_detail.get('averageRating')
+            link = book_detail.get('canonicalVolumeLink')
+            print(author)
+            save_in_database(request, author, title, category, description, averageRaitnig, link)
+
+    return redirect('/add')
