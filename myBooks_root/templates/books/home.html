@@ -58,7 +58,7 @@
                     <td>-</td>
                 {% endif %}
                 {% if book.canonicalVolumeLink %}
-                    <td>{{ book.canonicalVolumeLink }}</td>
+                    <td><a href="{{ book.canonicalVolumeLink }}" target="_blank">Link do książki</a></td>
                 {% else %}
                     <td><em>brak</em></td>
                 {% endif %}
