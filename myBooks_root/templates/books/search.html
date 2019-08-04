@@ -42,14 +42,14 @@
             <tr>
                 <td>{{ book.title }}</td>
                 <td>{% for author in book.author.all %}
-                    {{ author }}
+                    {{ author | safe }}
                     {% endfor %}</td>
                 <td>{% for category in book.category.all %}
-                    {{ category }}
+                    {{ category | safe }}
                     {% endfor %}
                 </td>
                 {% if book.description %}
-                    <td>{{ book.description }}</td>
+                    <td>{{ book.description | safe | truncatechars:250 }}</td>
                 {% else %}
                     <td>-</td>
                 {% endif %}
