@@ -6,13 +6,13 @@ def save_in_database(request, author, title, category, description, averageRaitn
         averageRaitnig = 0.0
 
     if not category:
-        category = 'brak kategorii'
+        category = '-'
 
     if not description:
-        description = 'brak opisu'
+        description = ''
 
     if not link:
-        link = 'brak linku'
+        link = ''
 
     book = Book(title=title,
                 description=description,
