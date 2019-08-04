@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Strona główna | {% endblock title %}
+{% block content %}
+<div class="container">
+    <h1>Lista książek</h1>
+    <div class="search row">
+        <form action="{% url 'books:search' %}">
+                <div class="col-md-3">
+                  <label class="sr-only">Tytuł</label>
+                  <input type="text" name="title" class="form-control" placeholder="Tytuł">
+                </div>
+
+                <div class="col-md-3">
+                  <label class="sr-only">Autor</label>
+                  <input type="text" name="author" class="form-control" placeholder="Autor">
+                </div>
+
+                <div class="col-md-3">
+                  <label class="sr-only">Kategoria</label>
+                  <input type="text" name="category" class="form-control" placeholder="Kategoria">
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-default" type="submit">Szukaj</button>
+                </div>
+        </form>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <th>Tytuł</th>
+            <th>Autor</th>
+            <th>Kategoria</th>
+            <th>Opis</th>
+            <th>Średnia ocena</th>
+            <th>Link</th>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{% for author in book.author.all %}
+                    {{ author | safe }}
+                    {% endfor %}</td>
+                <td>{% for category in book.category.all %}
+                    {{ category | safe }}
+                    {% endfor %}
+                </td>
+                {% if book.description %}
+                    <td>{{ book.description | safe | truncatechars:250 }}</td>
+                {% else %}
+                    <td>-</td>
+                {% endif %}
+                {% if book.averageRaiting %}
+                    <td>{{ book.averageRaiting }}</td>
+                {% else %}
+                    <td>-</td>
+                {% endif %}
+                {% if book.canonicalVolumeLink %}
+                    <td><a href="{{ book.canonicalVolumeLink }}" target="_blank">Link do książki</a></td>
+                {% else %}
+                    <td><em>-</em></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
