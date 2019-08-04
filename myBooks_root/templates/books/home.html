@@ -50,7 +50,7 @@
                 {% if book.description %}
                     <td>{{ book.description | safe | truncatechars:250 }}</td>
                 {% else %}
-                    <td><em>brak</em></td>
+                    <td>-</td>
                 {% endif %}
                 {% if book.averageRaiting %}
                     <td>{{ book.averageRaiting }}</td>
