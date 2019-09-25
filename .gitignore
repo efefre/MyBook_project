@@ -117,4 +117,4 @@ dmypy.json
 .pyre/
 
 # Settings (prod enivronment)
-settings/prod.py
+**/prod.py
